@@ -1,0 +1,21 @@
+<%- include("templates/header") %>
+    <div class="container">
+        <p>Users:</p>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div>
+                <ul>
+                    <% let i=0; %>
+                        <% for(i=0; i < users.length; i++) { %>
+                            <%- include('user', {user: users[i]}) %>
+                                <form method="POST" action="/promote">
+                                    <input type="hidden" name="userId" value="<%= users[i]._id %>">
+                                    <button class="btn btn-primary rounded-pill px-3" type="submit" name="role"
+                                        value="admin">Promote To Admin</button>
+                                    <button class="btn btn-secondary rounded-pill px-3" type="submit" name="role"
+                                        value="user">Promote To User</button>
+                                </form>
+                                <% } %>
+                </ul>
+            </div>
+        </div>
+<%- include("templates/footer") %>
